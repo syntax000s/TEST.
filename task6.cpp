@@ -1,22 +1,34 @@
 #include <iostream>
 #include <fstream>
+#include <string>
 
 using namespace std;
 
-int main(){
+void output(char otvet){
+    ofstream file1("sometext(modify).txt", ios::app);
+    file1<<otvet;
+    file1.close();
+}
 
-    ifstream file("sometext.txt");
-    ofstream file1("sometext(modify).txt");
+void solution(ifstream &file){
     string s;
     while(getline(file,s,'\n')){
         for(char c:s){
             char liter_down = c + 32;
-            file1<<liter_down;
+            output(liter_down);
         }
-        file1<<endl;
+        output('\n');
     }
-    file.close();
-    file1.close();
-    return 0;
 }
 
+void input(){
+
+    ifstream file("sometext.txt");
+    solution(file);
+    file.close();
+}
+
+int main(){
+    input();
+    return 0;
+}
