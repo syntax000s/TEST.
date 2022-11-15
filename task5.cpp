@@ -1,20 +1,32 @@
 #include <iostream>
-void userOperation();
-void isMounthPay(int* isLoanAmount, int* firstPay, int* isLoanTime);
-int main() {
-	userOperation();
-	return 0;
+#include <fstream>
+#include <string>
+
+using namespace std;
+
+void output(double otvet){
+    cout<<otvet;
 }
-void userOperation() {
-	int isLoanAmount, firstPay, isLoanTime;
-	std::cin >> isLoanAmount >> firstPay >> isLoanTime;
-	if (firstPay < isLoanAmount * 0.20) return;
-	isMounthPay(&isLoanAmount, &firstPay, &isLoanTime);
+
+void solution(double summa, double first_pay, double crok){
+
+    double otvet = (summa - first_pay) / (11 + (crok - 1) * 12);
+
+    output(otvet);
 }
-void isMounthPay(int *isLoanAmount, int *firstPay, int *isLoanTime) {
-	int isMounthPay;
-	*isLoanTime *= 12;
-	isMounthPay = (*isLoanAmount - *firstPay) / *isLoanTime;
-	std::cout << isMounthPay;
+
+void input(){
+
+    double summa,first_pay, crok;
+    cin>>summa>>first_pay>>crok;
+    if(first_pay < summa * 0.2){
+        return;
+    }
+    solution(summa,first_pay, crok);
+}
+
+int main(){
+    input();
+    return 0;
 }
 
